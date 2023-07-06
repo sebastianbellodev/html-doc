@@ -14,6 +14,8 @@ This documentation was obtained from _Google Developers_ cours [Learn HTML!](htt
     </li>
     <li><a href="#attributes">Attributes</a></li>
     <li><a href="#dom">Document Object Model (DOM)</a></li>
+    <li><a href="#document-structure">Document structure</a></li>
+    <li><a href="#essentials">Essentials</a></li>
 </ol>
 
 ---
@@ -111,7 +113,7 @@ HTML documents include a document type declaration and the <code>&lt;html&gt;</c
 
 Although the first isn't visible to the sighted visitor, it is vital to make your site function. It contains all the meta information, including information for search engines and social media results, icons for the browser tab and mobile home screen shortcut, and the behavior and presentation of your content.
 
-<h3 id="essential">Essentials</h3>
+<h3 id="essentials">Essentials</h3>
 
 There are several features that should be considered essential for any and every web page. Browsers will still render content if these elements are missing, but don't forget to include them.
 
