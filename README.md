@@ -1,5 +1,6 @@
 <h1>HTML</h1>
-This documentation was obtained from *Google Developers* course [Learn HTML!](https://web.dev/learn/html/overview/)
+
+This documentation was obtained from *Google Developers* cours [Learn HTML!](https://web.dev/learn/html/overview/)
 
 <h1>Table of contents</h1>
 <ol>
@@ -19,15 +20,11 @@ This documentation was obtained from *Google Developers* course [Learn HTML!](ht
 
 <h2 id="introduction">Introduction</h2>
 
----
-
 HTML (Hypertext Markup Language) is the standard markup language for describing the structure of documents displayed on the web.
 
 HTML documents are basically a **tree of nodes**, including HTML elements and text nodes.
 
 <h2 id="elements">Elements</h2>
-
----
 
 HTML consists of a series of elements, which you use to enclose, or wrap, different parts of the content to make it appear or act in a certain way. HTML elements are delineated by tags, written using angle brackets <code><</code> and <code>></code>.
 
@@ -76,8 +73,6 @@ Void elements are used to **provide information** about the content.
 
 <h2 id="attributes">Attributes</h2>
 
----
-
 These extra bits of space-separated <code>name="value"</code> pairs (though sometimes including a value is optional) are called attributes.
 
 Attributes only appear in the opening tag, providing information about the element. The attribute, like the rest of the opening tag, won't appear in the content, but they do help define how the content will appear to both your sighted and non-sighted (assistive technologies and search engines) users. Attributes are what make HTML so incredibly **powerful**, because they define the behavior, linkages, and functionality of elements.
@@ -105,8 +100,6 @@ Also, remember that a good practice for writing values requires using lowercase 
 Another key attribute is <code>role</code>; this one helps assistive technologies and, in some cases, search engines. Due to the element you choose, and therefore the tags you use, should be appropriate for the content you are displaying, as tags have semantic meaning.
 
 <h2 id="dom">Document Object Model (DOM)</h2>
-
----
 
 The Document Object Model (DOM) is the data representation of the structure and content of the HTML document. As the browser parses HTML, it creates a JavaScript object for every element and section of text encountered. These objects are called nodes—element nodes and text nodes, respectively.
 
