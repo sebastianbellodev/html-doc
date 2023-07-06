@@ -1,11 +1,11 @@
 <h1>HTML</h1>
 
-This documentation was obtained from *Google Developers* cours [Learn HTML!](https://web.dev/learn/html/overview/)
+This documentation was obtained from _Google Developers_ cours [Learn HTML!](https://web.dev/learn/html/overview/)
 
 <h1>Table of contents</h1>
 
 <ol>
-    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#overview">Overview</a></li>
     <li><a href="#elements">Elements</a>
         <ol>
             <li><a href="#non-replaced-elements">Non-replaced elements</a></li>
@@ -16,15 +16,15 @@ This documentation was obtained from *Google Developers* cours [Learn HTML!](htt
     <li><a href="#dom">Document Object Model (DOM)</a></li>
 </ol>
 
-----
+---
 
-<h2 id="introduction">Introduction</h2>
+<h2 id="overview">Overview</h2>
 
 HTML (Hypertext Markup Language) is the standard markup language for describing the structure of documents displayed on the web.
 
 HTML documents are basically a **tree of nodes**, including HTML elements and text nodes.
 
-<h2 id="elements">Elements</h2>
+<h3 id="elements">Elements</h3>
 
 HTML consists of a series of elements, which you use to enclose, or wrap, different parts of the content to make it appear or act in a certain way. HTML elements are delineated by tags, written using angle brackets <code><</code> and <code>></code>.
 
@@ -49,11 +49,11 @@ The [specification provides a list of all the required closing tags](https://htm
 
 There are two types of elements: replaced and non-replaced.
 
-<h3 id="non-replaced-elements">Non-replaced elements</h3>
+<h4 id="non-replaced-elements">Non-replaced elements</h4>
 
 Non-replaced elements have opening and (sometimes optional) closing tags that surround them and may include text and other tags as sub-elements.
 
-<h3 id="replaced-void-elements">Replaced and void elements</h3>
+<h4 id="replaced-void-elements">Replaced and void elements</h4>
 
 Replaced elements are replaced by objects, be it a graphical user interface (UI) widget in the case of most form controls, or a raster or scalable image file in the case of most images. Being replaced by objects, each comes with a default appearance. Depending on the type of object and the browser, the applicable styles are limited.
 
@@ -62,7 +62,7 @@ Void elements are all self-closing elements and are represented by one tag. This
 [Here is an example](/index.html) of a replaced element by non-text content (user interface object):
 
 ```
-<input type="range">
+<input type="range" />
 ```
 
 Void elements cannot contain text content or nested elements. Void elements include <code>&lt;br&gt;</code>, <code>&lt;col&gt;</code>, <code>&lt;embed&gt;</code>, <code>&lt;hr&gt;</code>, <code>&lt;img&gt;</code>, <code>&lt;input&gt;</code>, <code>&lt;link&gt;</code>, <code>&lt;meta&gt;</code>, <code>&lt;source&gt;</code>, <code>&lt;track&gt;</code>, and <code>&lt;wbr&gt;</code>, among others.
@@ -71,7 +71,7 @@ Most replaced elements are void elements, but not all. The <code>&lt;video&gt;</
 
 Void elements are used to **provide information** about the content.
 
-<h2 id="attributes">Attributes</h2>
+<h3 id="attributes">Attributes</h3>
 
 These extra bits of space-separated <code>name="value"</code> pairs (though sometimes including a value is optional) are called attributes.
 
@@ -88,7 +88,7 @@ In this example, we have an anchor link with two attributes. These two attribute
 It is important to notice that the next replaced element contains an attribute with no value associated, this syntax corresponds to **boolean** attributes.
 
 ```
-<img src="switch.svg" alt="light switch" ismap>
+<img src="switch.svg" alt="light switch" ismap />
 ```
 
 Now that we understand the utility of attributes, let's navigate through some of them with the snippet above.
@@ -99,8 +99,60 @@ Also, remember that a good practice for writing values requires using lowercase 
 
 Another key attribute is <code>role</code>; this one helps assistive technologies and, in some cases, search engines. Due to the element you choose, and therefore the tags you use, should be appropriate for the content you are displaying, as tags have semantic meaning.
 
-<h2 id="dom">Document Object Model (DOM)</h2>
+<h3 id="dom">Document Object Model (DOM)</h3>
 
 The Document Object Model (DOM) is the data representation of the structure and content of the HTML document. As the browser parses HTML, it creates a JavaScript object for every element and section of text encountered. These objects are called nodes—element nodes and text nodes, respectively.
 
 The HTMLElement interface -from the [HTML DOM API](https://developer.mozilla.org/en-US/docs/Web/API/HTML_DOM_API)- represents the HTML element and all of its descendant nodes. Every other element implements it via an interface that inherits from it. Each inheriting interface has a constructor, methods, and properties. Via the inherited HTMLElement properties, you can access every global attribute, as well as input, pointer, transition, and animation events. Via the individual element's sub-type, such as HTMLAnchorElement and HTMLImageElement, you can access element-specific attribute values and methods.
+
+<h2 id="document-structure">Document structure</h2>
+
+HTML documents include a document type declaration and the <code>&lt;html&gt;</code> root element. Nested in the <code>&lt;html&gt;</code> element are the document <code>&lt;head&gt;</code> and document <code>&lt;body&gt;</code>.
+
+Although the first isn't visible to the sighted visitor, it is vital to make your site function. It contains all the meta information, including information for search engines and social media results, icons for the browser tab and mobile home screen shortcut, and the behavior and presentation of your content.
+
+<h3 id="essential">Essentials</h3>
+
+There are several features that should be considered essential for any and every web page. Browsers will still render content if these elements are missing, but don't forget to include them.
+
+- <code>&lt;!DOCTYPE html&gt;</code>
+
+The first thing in any HTML document is the preamble. This may look like an HTML element, but it isn't. It's a special kind of node called "doctype". The doctype tells the browser to use standards mode. If omitted, browsers will use a different rendering mode known as quirks mode. Including the doctype helps prevent [quirks mode](https://developer.mozilla.org/en-US/docs/Web/HTML/Quirks_Mode_and_Standards_Mode).
+
+You don't need to understand this, quirks mode basically reffers to the way you don't want the browser to render the content of your document.
+
+- <code>&lt;html&gt;</code>
+
+The <html> element is the root element for an HTML document. It is the parent of the <head> and <body>, containing everything in the HTML document other than the doctype. If omitted it will be implied, but it is important to include it, as this is the element on which the language of the content of the document is **declared**.
+
+Now, let's introduce the attribute <code>&lt;lang&gt;</code>. This global attribute should be used to identify exceptions to the main language within the document. It only adds **semantics**, enabling assistive technologies and automated services to know the language of the impacted content.
+
+- <code>&lt;head&gt;</code>
+
+The <code>&lt;head&gt;</code>, or document metadata header, contains all the metadata for a site or application.
+
+The document metadata, including the document title, character set, viewport settings, description, base URL, stylesheet links, and icons, are found in the <code>&lt;head&gt;</code> element. While you may not need all these features, always include character set, title, and viewport settings.
+
+The very first attribute in the <code>&lt;head&gt;</code> should be the <code>charset</code> character encoding declaration. It comes before the title to ensure the browser can render the characters in that title and all the characters in the rest of the document.
+
+The default encoding in most browsers is windows-1252, depending on the locale. However, you should use **UTF-8**, as it enables the one- to four-byte encoding of all characters, even ones you didn't even know existed. Also, it's the encoding type required by **HTML5**.
+
+As a fun fact, you can include emojis in your <code>&lt;title&gt;</code> or <code>class</code> names, but it's not a good practice.
+
+~~~
+<meta charset="utf-8" />
+~~~
+
+Your home page and all additional pages should each have a unique title. The contents for the document title, the text between the opening and closing <code>&lt;title&gt;</code> tags, are displayed in the browser tab, the list of open windows, the history, search results, and, unless redefined with <code>&lt;meta&gt;</code> tags, in social media cards.
+
+~~~
+<title>Machine Learning Workshop</title>
+~~~
+
+The other meta attribute that should be considered essential is <code>viewport</code>, which helps site responsiveness, enabling content to render well by default, no matter the viewport width. While this element has been around since 2007, when the first iPhone came out, it's only recently been documented in a specification. As it enables controlling a viewport's size and scale, and prevents the site's content from being sized down to fit a 960px site onto a 320px screen, it is definitely recommended.
+
+~~~
+<meta name="viewport" content="width=device-width" />
+~~~
+
+Viewport is part of the standards *WCAG 2.1 Best Practice* and *WCAG 2.0 Best Practice*; your site will pass if it is scalable and has no maximum size set.
