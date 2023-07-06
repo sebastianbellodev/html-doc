@@ -3,17 +3,17 @@
 This documentation was obtained from *Google Developers* cours [Learn HTML!](https://web.dev/learn/html/overview/)
 
 <h1>Table of contents</h1>
+
 <ol>
-<li><a href="#introduction">Introduction</a></li>
-<li>
-<a href="#elements">Elements</a>
-<ol>
-<li><a href="#non-replaced-elements">Non-replaced elements</a></li>
-<li><a href="#replaced-void-elements">Replaced and void elements</a></li>
-</ol>
-</li>
-<li><a href="#attributes">Attributes</a></li>
-<li><a href="#dom">Document Object Model (DOM)</a></li>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#elements">Elements</a>
+        <ol>
+            <li><a href="#non-replaced-elements">Non-replaced elements</a></li>
+            <li><a href="#replaced-void-elements">Replaced and void elements</a></li>
+        </ol>
+    </li>
+    <li><a href="#attributes">Attributes</a></li>
+    <li><a href="#dom">Document Object Model (DOM)</a></li>
 </ol>
 
 ----
