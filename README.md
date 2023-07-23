@@ -5,19 +5,25 @@ This documentation was obtained from _Google Developers_ course [Learn HTML!](ht
 <h1>Table of contents</h1>
 
 <ol>
-    <li><a href="#overview">Overview</a></li>
-    <li><a href="#elements">Elements</a>
-        <ol>
+    <li><a href="#overview">Overview</a>
+      <ol>
+        <li><a href="#elements">Elements</a>
+          <ol>
             <li><a href="#non-replaced-elements">Non-replaced elements</a></li>
             <li><a href="#replaced-void-elements">Replaced and void elements</a></li>
-        </ol>
+          </ol>
+        </li>
+        <li><a href="#attributes">Attributes</a></li>
+        <li><a href="#dom">Document Object Model (DOM)</a></li>
+      </ol>
     </li>
-    <li><a href="#attributes">Attributes</a></li>
-    <li><a href="#dom">Document Object Model (DOM)</a></li>
-    <li><a href="#document-structure">Document structure</a></li>
-    <li><a href="#essentials">Essentials</a></li>
-    <li><a href="#scripts">Scripts</a></li>
-    <li><a href="#comments">Comments</a></li>
+    <li><a href="#document-structure">Document structure</a>
+      <ol>
+        <li><a href="#essentials">Essentials</a></li>
+        <li><a href="#scripts">Scripts</a></li>
+        <li><a href="#comments">Comments</a></li>
+      </ol>
+    </li>
 </ol>
 
 ---
@@ -89,7 +95,7 @@ The opening tag always starts with the element **type**. The type can be followe
 
 In this example, we have an anchor link with two attributes. These two attributes have converted the content into an internal anchor link that scrolls to the attribute <code>id</code> in the current browser tab when the link is clicked, tapped, or activated with the keyboard or other device.
 
-The <code>target</code> attribute, valid on <code>&lt;base&gt;</code> (not very common element) as well as on links and forms, sets where those links should open. The default of <code>_self</code> opens linked files in the same context as the current document. Other options include <code>_blank</code>, which opens every link in a new window, the <code>_parent</code> of the current content, which may be the same as self if the opener is not an iframe, or <code>_top</code>, which is in the same browser tab, but popped out of any context to take up the entire tab.
+The <code>target</code> attribute, valid on <code>&lt;base&gt;</code> (not very common element) as well as on links and forms, sets where those links should open. The default of <code>\_self</code> opens linked files in the same context as the current document. Other options include <code>\_blank</code>, which opens every link in a new window, the <code>\_parent</code> of the current content, which may be the same as self if the opener is not an iframe, or <code>\_top</code>, which is in the same browser tab, but popped out of any context to take up the entire tab.
 
 It is important to notice that the next replaced element contains an attribute with no value associated, this syntax corresponds to **boolean** attributes.
 
@@ -241,7 +247,7 @@ The default type is JavaScript. If you include any other scripting language, inc
 </script>
 ```
 
-This snippet creates an event handler for an element with the id of switch. With JavaScript, you don't want to reference an element before it exists. It doesn't exist yet, so we won't include it yet. When we do add the light switch element, we'll add the <code>&lt;script&gt;</code> at the bottom of the <code>&lt;body&gt;</code> rather than in the <code>&lt;head&gt;</code>. 
+This snippet creates an event handler for an element with the id of switch. With JavaScript, you don't want to reference an element before it exists. It doesn't exist yet, so we won't include it yet. When we do add the light switch element, we'll add the <code>&lt;script&gt;</code> at the bottom of the <code>&lt;body&gt;</code> rather than in the <code>&lt;head&gt;</code>.
 
 Why? Two reasons. We want to ensure elements exist before the script referencing them is encountered as we're not basing this script on a [DOMContentLoaded](https://developer.mozilla.org/en-US/docs/Web/API/Document/DOMContentLoaded_event) event. And, mainly, JavaScript is not only [render-blocking](https://developer.chrome.com/docs/lighthouse/performance/render-blocking-resources/), but the browser stops downloading all assets when scripts are downloaded and doesn't resume downloading other assets until the JavaScript is executed. For this reason, you will often find JavaScript requests at the end of the document rather than in the head.
 
@@ -249,13 +255,13 @@ There are two attributes that can reduce the blocking nature of JavaScript downl
 
 Adding the <code>defer</code> attribute defers the execution of the script until after everything is rendered, preventing the script from harming performance. The <code>async</code> and <code>defer</code> attributes are only valid on external scripts.
 
-~~~
+```
 <script src="js/switch.js" defer></script>
-~~~
+```
 
 The [code](/index.html) now looks like this:
 
-~~~
+```
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -270,11 +276,87 @@ The [code](/index.html) now looks like this:
   </head>
   <body>
 
-    <!-- <script defer src="scripts/lightswitch.js"></script>-->
+    <!-- <script defer src="scripts/lightswitch.js"></script> -->
   </body>
 </html>
-~~~
+```
 
 <h3 id="comments">Comments</h3>
 
 Anything between <code>&lt;!&#45;&#45;</code> and <code>&#45;&#45;&gt;</code> will not be visible or parsed. HTML comments can be put anywhere on the page, including the head or body, with the exception of scripts or style blocks, where you should use JavaScript and CSS comments, respectively.
+
+<h2 id="metadata">Metadata</h2>
+
+While everything in the <code>&lt;head&gt;</code>, including the <code>&lt;title&gt;</code>, <code>&lt;link&gt;</code>, <code>&lt;script&gt;</code>, <code>&lt;style&gt;</code>, is actually **metadata**, there is a <code>&lt;meta&gt;</code> tag for metadata that cannot be represented by these other elements.
+
+There are two main types of meta tags: **pragma directives**, with the <code>http-equiv</code> attribute like the <code>charset</code> meta tag used to have, and **named** meta types, like the viewport meta tag with the <code>name</code> attribute included in the <a href="#document-structure">document structure</a> section. Both the name and http-equiv meta types must include the content attribute, which defines the content for the type of metadata listed.
+
+The attribute <code>http-equiv</code> is short for "http-equivalent", as the meta tag is basically replicating what could be set in an HTTP header. Aside from the charset exception, all other meta tags defined in the WHATWG HTML specification contain either the http-equiv or name attribute.
+
+<h3 id="pragma-directives">Pragma directives</h3>
+
+The <code>http-equiv</code> attribute has as its value a pragma directive. These directives describe how the page should be parsed. Supported <code>http-equiv</code> values enable setting directives when you are unable to set HTTP headers directly.
+
+The specification defines [seven pragma directives](https://html.spec.whatwg.org/multipage/semantics.html#pragma-directives), most of which have other methods of being set. For example, while you can include a language directive with <code>&lt;meta http-equiv="content-language" content="en-us" /&gt;</code>, we have already discussed using the <code>lang</code> attribute on the HTML element, which is what should be used instead.
+
+The most common pragma directive is the <code>refresh</code> directive:
+
+```
+<meta http-equiv="refresh" content="60; https://machinelearningworkshop.com/regTimeout" />
+```
+
+While you can set a directive to refresh at an interval of the number of seconds set in the <code>content</code> attribute, and even redirect to a different URL, **please don't**. Refreshing and redirecting content without an explicit user request to do so is poor usability and negatively impacts accessibility.
+
+The most useful pragma directive is content-security-policy, which enables defining a content policy for the current document. Content policies mostly specify allowed server origins and script endpoints, which help guard against cross-site scripting attacks.
+
+The most useful pragma directive is <code>content-security-policy</code>, which enables defining a [content policy](https://web.dev/csp/) for the current document. Content policies mostly specify allowed server origins and script endpoints, which help guard against cross-site scripting attacks.
+
+```
+<meta http-equiv="content-security-policy" content="default-src https:" />
+```
+
+If you don't have access to change HTTP headers (or if you do), here is a [list of space separated content values](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy) for <code>content-security-policy</code> directives.
+
+<h3 id="named-meta-tags">Named meta tags</h3>
+
+More often than not, you'll include named metadata. Include the <code>name</code> attribute, with the attribute value being the name of the metadata. As with pragma directsives, the <code>content</code> attribute is required.
+
+The <code>name</code> attribute is the name of the metadata. In addition to <code>viewport</code>, you will probably want to include <code>description</code> and <code>theme-color</code>, but not <code>keywords</code>.
+
+- <code>keywords</code>
+
+Search engine optimization snake-oil salespeople abused the <code>keywords</code> meta tag by stuffing them with comma-separated lists of spam words instead of lists of relevant key terms, so search engines do not consider this metadata to be useful anymore. **No need to waste time, effort, or bytes adding it**.
+
+- <code>description</code>
+
+The <code>description</code> value, however, is super important for SEO (Search Engine Optimization); in addition to helping sites rank based on the content, the description content value is often what search engines display under the page's title in search results. Several browsers, like Firefox and Opera, use this as the default description of bookmarked pages. The description should be a short and accurate summary of the page's content.
+
+```
+<meta name="description"
+  content="Register for a machine learning workshop at our school for machines who can't learn good and want to do other stuff good too" />
+```
+
+- <code>robots</code>
+
+If you don't want your site to be indexed by search engines, you can let them know. <code>&lt;meta name="robots" content="noindex, nofollow" /&gt;</code> tells the bots to not index the site and not to follow any links. Bots should listen to the request, but there's no law requiring they heed the request. You don't need to include <code>&lt;meta name="robots" content="index, follow" /&gt;</code> to request indexing the site and following links, as that is the default, unless HTTP headers say otherwise.
+
+```
+<meta name="robots" content="index, follow" />
+```
+
+- <code>theme-color</code>
+
+The <code>theme-color</code> value lets you define a color to customize the browser interface. The color value on the content attribute will be used by supporting browsers and operating systems, letting you provide a suggested color for the user agents that support coloring the title bar, tab bar, or other chrome components. This meta tag is especially useful for [progressive web apps](https://web.dev/learn/pwa/).
+
+But, if you're including a **manifest** file, which a PWA (Progressive Web App) requires, you can include the theme color there instead. Defining it in the HTML, however, ensures that the color will be found immediately, before **rendering**, which may be **faster** on first load than waiting for the manifest.
+
+To set the theme color to the blue tone of our site's background color, include:
+
+```
+<meta name="theme-color" content="#226DAA" />
+```
+
+The theme color <code>meta</code> tag can include a <code>media</code> attribute enabling the setting of different theme colors based on media queries. The <code>media</code> attribute can be included in this meta tag only and is ignored in all other meta tags.
+
+
+
